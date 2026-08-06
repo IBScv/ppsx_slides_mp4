@@ -1,7 +1,7 @@
 Copyright 2026 Ilhas Business Software, Cabo Verde
 Edson Martins / CEO
 
-This python is delivered as is, the script converts ppsx Slides to Mp4, taking first image and first audio and get
+This python script is delivered as is, it converts ppsx Slides to Mp4, taking first image and first audio and get
 the duration from the audio (narration). Slides with no audio will default to 10 seconds
 as we see then as complementary.
 
