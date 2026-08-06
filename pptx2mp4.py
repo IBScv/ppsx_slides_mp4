@@ -186,7 +186,7 @@ def create_slide_video(image, audio, output, slide_num, total):
         "-hide_banner",
         "-loglevel",
         "error",
-        
+
         "-y",
 
         "-loop",
@@ -194,20 +194,35 @@ def create_slide_video(image, audio, output, slide_num, total):
 
         "-i",
         str(image),
+    ]
 
-        "-i",
-        str(audio),
+
+    if audio:
+        cmd += [
+            "-i",
+            str(audio),
+            "-shortest",
+        ]
+
+    else:
+        # silent slide duration
+        cmd += [
+            "-t",
+            "10",
+        ]
+
+
+    cmd += [
 
         "-vf",
-        "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2",
+        "scale=1920:1080:force_original_aspect_ratio=decrease,"
+        "pad=1920:1080:(ow-iw)/2:(oh-ih)/2",
 
         "-c:v",
         "libx264",
 
         "-pix_fmt",
         "yuv420p",
-
-        "-shortest",
 
         "-progress",
         "pipe:1",
@@ -227,13 +242,7 @@ def create_slide_video(image, audio, output, slide_num, total):
     )
 
 
-    if not audio:
-        duration = 0
-    else:
-        duration = get_duration(audio)
-
-    if duration <= 0:
-        duration = 10 #default 10 seconds for slide without audio
+    duration = get_duration(audio) if audio else 10 #default 10 seconds for slide without audio
 
     current = 0
 
