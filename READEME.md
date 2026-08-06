@@ -1,0 +1,1 @@
+This python script converts ppsx Slides to Mp4, taking first image and first audio and get the duration from the audio (narration). Slides with no audio will default to 10 seconds as we see then as complementary.
